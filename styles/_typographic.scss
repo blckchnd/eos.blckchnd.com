@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .text{
   &--md{
     letter-spacing: 0.5px;
@@ -120,3 +121,127 @@
     opacity: 0;
   }
 }
+=======
+.text{
+  &--md{
+    letter-spacing: 0.5px;
+    word-spacing: 3px;
+    font-family: 'Play', monospace;
+    font-size: 2rem;
+  }
+  &--lg{
+    letter-spacing: 0.5px;
+    word-spacing: 4px;
+    font-family: 'Play', monospace;
+    font-size: 2.4rem;
+  }
+  &--sm{
+    letter-spacing: 0.5px;
+    word-spacing: 2px;
+    font-family: 'Play', monospace;
+    font-size: 1.6rem;
+  }
+  &--upper{
+    text-transform: uppercase;
+  }
+}
+.heading{
+  position: relative;
+  display: block;
+  width: 100%;
+  padding: 0;
+  margin-bottom: 2rem;
+  color: $light;
+  font-size: 3.4rem;
+  line-height: 1.5;
+  font-family: 'Avenir', monospace;
+  font-weight: bold;
+  text-transform: uppercase;
+  &:after, &:before{
+    position: absolute;
+    bottom: 0;
+    content: '';
+    display: block;
+    height: 2px;
+    background-color: $accent;
+    border-radius: 0 0 100% 100%;
+  }
+  &:after{
+    left: 3rem;
+    width: 2rem;
+    animation: twinkle 3s linear infinite;
+    box-shadow:
+      0 0 3px $accent_opacity,
+      0 0 5px $accent_opacity,
+      0 0 7px $accent_opacity,
+      0 0 9px $accent_opacity,
+      0 0 11px $accent_opacity,
+      0 0 13px $accent_opacity;
+  }
+  &:before{
+    width: 8rem;
+  }
+  &--sm{
+    font-size: 2.4rem;
+    font-weight: bold;
+  }
+  &--center{
+    text-align: center;
+    &:after, &:before{
+      left: calc(50% - 4rem);
+    }
+    &:after{
+      left: calc(50% - 1rem);
+    }
+  }
+  &--in-text{
+    margin-left: 4px;
+    font-size: 2rem;
+    font-family: Play, monospace;
+    font-weight: normal;
+    display: inline;
+    white-space: nowrap;
+    border-bottom: 1px solid $accent_opacity;
+    @media screen and (max-width: 900px){
+      white-space: normal;
+    }
+    &:before, &:after{
+      display: none;
+    }
+  }
+}
+
+@keyframes twinkle {
+  0%{
+    transform: translate(-200%, 0);
+    opacity: 0;
+  }
+  50%{
+    transform: translate(0);
+    opacity: 1;
+  }
+  100%{
+    transform: translate(200%, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes headerTwinkle {
+  0%{
+    transform: translate(-1000%, 0);
+    opacity: 0;
+  }
+  10%{
+    transform: translate(0);
+    opacity: 1;
+  }
+  20%{
+    transform: translate(1000%, 0);
+    opacity: 0;
+  }
+  100%{
+    transform: translate(-1000%, 0);
+    opacity: 0;
+  }
+}
+>>>>>>> 330ffd57a355394ab84b8e94086486484782baa1

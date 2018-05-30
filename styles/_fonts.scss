@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @font-face {
     font-family: 'Avenir';
     src: url(../fonts/Avenir.eot);
@@ -9,4 +10,17 @@
     src: url(../fonts/Avenir-Regular.eot);
     src: url(../fonts/Avenir-Regular.eot?#iefix) format("embedded-opentype"), url(../fonts/Avenir-Regular.woff) format("woff"), url(../fonts/Avenir-Regular.ttf) format("ttf");
     font-style: normal;
+=======
+@font-face {
+    font-family: 'Avenir';
+    src: url(../fonts/Avenir.eot);
+    src: url(../fonts/Avenir.eot?#iefix) format("embedded-opentype"), url(../fonts/Avenir.woff) format("woff"), url(../fonts/Avenir.ttf) format("ttf");
+    font-style: bold;
+}
+@font-face {
+    font-family: 'Avenir';
+    src: url(../fonts/Avenir-Regular.eot);
+    src: url(../fonts/Avenir-Regular.eot?#iefix) format("embedded-opentype"), url(../fonts/Avenir-Regular.woff) format("woff"), url(../fonts/Avenir-Regular.ttf) format("ttf");
+    font-style: normal;
+>>>>>>> 330ffd57a355394ab84b8e94086486484782baa1
 }

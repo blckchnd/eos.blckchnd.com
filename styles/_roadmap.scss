@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .roadmap {
   @media screen and (max-width: 900px){
     overflow: hidden;
@@ -114,3 +115,121 @@
     border-color: transparent $dark transparent transparent;
   }
 }
+=======
+.roadmap {
+  @media screen and (max-width: 900px){
+    overflow: hidden;
+  }
+  &__list {
+    padding: 50px 0;
+  }
+  &__item {
+    list-style-type: none;
+    position: relative;
+    width: 2px;
+    margin: 0 auto;
+    padding-top: 50px;
+    background: $accent;
+    box-shadow:
+      0 0 3px $accent_opacity,
+      0 0 5px $accent_opacity,
+      0 0 10px $accent_opacity;
+    &:after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: inherit;
+      transition: background .5s ease-in-out;
+    }
+    &:nth-child(odd) .roadmap__inner {
+      left: 45px;
+      transform: translate3d(200px, 0, 0);
+      &:before {
+        left: -15px;
+        border-width: 8px 16px 8px 0;
+        border-color: transparent $dark transparent transparent;
+      }
+    }
+    &:nth-child(even) .roadmap__inner {
+      left: -439px;
+      transform: translate3d(-200px, 0, 0);
+      &:before {
+        right: -15px;
+        border-width: 8px 0 8px 16px;
+        border-color: transparent transparent transparent $dark;
+      }
+    }
+    &.in-view {
+      &:after {
+        background-color: $dark;
+      }
+      .roadmap__inner {
+        transform: none !important;
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+  &__inner {
+    position: relative;
+    bottom: 0;
+    width: 400px;
+    padding: 15px;
+    background-color: $dark;
+    visibility: hidden;
+    opacity: 0;
+    border-radius: 0.6rem;
+    box-shadow: 5px 5px 20px $accent_opacity;
+    transition: all .5s ease-in-out;
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 7px;
+      width: 0;
+      height: 0;
+      border-style: solid;
+    }
+  }
+  &__date {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+}
+
+
+/* GENERAL MEDIA QUERIES
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+@media screen and (max-width: 900px) {
+  .roadmap__inner {
+    width: 250px;
+  }
+  .roadmap__item:nth-child(even) .roadmap__inner {
+    left: -289px;
+    /*250+45-6*/
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .roadmap__item {
+    margin-left: 20px;
+  }
+  .roadmap__inner {
+    width: calc(100vw - 91px);
+  }
+  .roadmap__item:nth-child(even) .roadmap__inner {
+    left: 45px;
+  }
+  .roadmap__item:nth-child(even) .roadmap__inner:before {
+    left: -15px;
+    border-width: 8px 16px 8px 0;
+    border-color: transparent $dark transparent transparent;
+  }
+}
+>>>>>>> 330ffd57a355394ab84b8e94086486484782baa1
