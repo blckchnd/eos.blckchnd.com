@@ -1,0 +1,85 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="https://github.com/EOSIO/eosjs/releases/download/v14.1.1/eos.js"></script>
+
+  <script>
+      function handle_error(error) {
+          document.getElementById('response').style.display = 'block';
+          document.getElementById('status').innerText = 'ERROR';
+          document.getElementById('result').innerText = error.message;
+      }
+
+      function send() {
+          let api_endpoint = document.getElementById('api_endpoint').value;
+          api_endpoint = api_endpoint.replace(/\/$/, ""); //remove trailing slash
+          let raw_transaction = document.getElementById('raw_transaction').value;
+
+          try {
+              raw_transaction = JSON.parse(raw_transaction);
+
+              Eos({
+                  httpEndpoint: api_endpoint,
+                  broadcast: true,
+              }).pushTransaction(raw_transaction).then(
+                  function(result){
+                      document.getElementById('response').style.display = 'block';
+                      document.getElementById('status').innerText = 'SUCCESS';
+                      document.getElementById('result').innerText = JSON.stringify(result, null, "    ");
+                  },
+                  handle_error
+              );
+
+          } catch(error) {
+              handle_error(error);
+          }
+      }
+      document.addEventListener('DOMContentLoaded', function () {
+          if (location.protocol == 'https:') { // Enforce https if served from https, to avoid "mixed content" error
+              document.getElementById('api_endpoint').pattern = '^https://.*';
+              document.getElementById('api_endpoint').title = 'Since this website is hosted via HTTPS, endpoint API needs to support HTTPS protocol. You can read more about this here: https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content';
+          }
+      });
+  </script>
+  <style>
+    input, textarea {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+    <h1>Step 3: Send the generated transaction</h1>
+
+    <p>This is the final step and it needs to be done on-line.</p>
+    <p>The goal is to push to the network the <var>raw transaction</var> which was generated in the previous step.</p>
+    <p>It's safe to be done on-line, as this transaction does NOT contain your private key.</p>
+
+    <form action="javascript:send()">
+        <label for="api_endpoint">API Endpoint</label>
+        <input type="url" name="api_endpoint" id="api_endpoint" value="" list="defaultURLs" style="width: 300px;" required>
+
+        <datalist id="defaultURLs">
+            <option value="https://example.com" label="chain_id:0000000000000000000000000000000000000000000000000000000000000000">
+        </datalist>
+        <br>
+
+        <label for="api_endpoint"><var>Raw transaction</var></label><br>
+        <textarea id="raw_transaction" style="width: 1000px; height: 400px; font-size: 0.7em" required></textarea><br/>
+        <input type="submit" value="Send transaction to the network">
+    </form>
+
+    <div id="response" style="display: none">
+        Status: <span id="status"></span><br>
+
+        <label for="result">Response:</label><br>
+
+        <div style="width: 1000px; overflow: auto;">
+            <code>
+                <pre id="result" style="font-size: 0.7em;"></pre>
+            </code>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<html>
+<head>
+    <meta charset="utf-8">
+
+    <script src="https://github.com/EOSIO/eosjs/releases/download/v14.1.1/eos.js"></script>
+
+    <script>
+        function handle_error(error) {
+            document.getElementById('load_info_status').innerText = error.message;
+        }
+
+        function load() {
+            let api_endpoint = document.getElementById('api_endpoint').value;
+
+            api_endpoint = api_endpoint.replace(/\/$/, ""); //remove trailing slash
+
+            eos = Eos({httpEndpoint: api_endpoint});
+
+            eos.getInfo({}).then(function(result){
+
+                document.getElementById('loaded_info').style.display = 'block';
+                document.getElementById('network_info').innerText = JSON.stringify(result, null, "    ");
+                document.getElementById('chain_id').value = result.chain_id;
+
+                eos.getBlock(result.last_irreversible_block_num).then(
+                    function(result){
+                        document.getElementById('block_num').value = result.block_num;
+                        document.getElementById('ref_block_prefix').value = result.ref_block_prefix;
+                    }
+                )
+            }, handle_error);
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            if (location.protocol == 'https:') { // Enforce https if served from https, to avoid "mixed content" error
+                document.getElementById('api_endpoint').pattern = '^https://.*';
+                document.getElementById('api_endpoint').title = 'Since this website is hosted via HTTPS, endpoint API needs to support HTTPS protocol. You can read more about this here: https://developer.mozilla.org/en-US/docs/Web/Security/Mixed_content';
+            }
+        });
+    </script>
+</head>
+<body>
+
+    <h1>Step 1: Fetch information about the network</h1>
+
+    <p>This initial step needs to be done on-line.</p>
+    <p>The goal of this step is to extract information from the network (<var>chain_id</var>, <var>block_num</var> and <var>ref_block_prefix</var>), which will be needed in the subsequent step.</p>
+
+    <form action="javascript:load()">
+        <label for="api_endpoint">API Endpoint</label>
+        <input type="url" name="api_endpoint" id="api_endpoint" value="" list="defaultURLs" style="width: 300px;" required>
+
+        <datalist id="defaultURLs">
+            <option value="https://example.com" label="chain_id:0000000000000000000000000000000000000000000000000000000000000000">
+        </datalist>
+        <input type="submit" value="Load">
+    </form>
+    <div id="load_info_status"></div>
+    <div id="loaded_info" style="display: none;">
+        <pre id="network_info" style="font-size: 0.7em"></pre>
+
+        <hr>
+
+        <label for="chain_id">chain_id</label>
+        <input type="text" name="chain_id" id="chain_id" value="" style="width: 500px"><br>
+
+        <label for="block_num">block_num</label>
+        <input type="text" name="block_num" id="block_num" value=""><br>
+
+        <label for="ref_block_prefix">ref_block_prefix</label>
+        <input type="text" name="ref_block_prefix" id="ref_block_prefix" value=""><br>
+
+        <p>Copy or write down <var>chain_id</var>, <var>block_num</var> and <var>ref_block_prefix</var>. You will need those in the subsequent step to generate a valid transaction while being off-line.</p>
+        <p>Next, go to <a href="2_generate_transaction.html" target="_blank">Step 2</a> to generate a transaction.</p>
+    </div>
+
+</body>
+</html>

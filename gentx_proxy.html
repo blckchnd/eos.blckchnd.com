@@ -1,0 +1,122 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="https://github.com/EOSIO/eosjs/releases/download/v14.1.1/eos.js"></script>
+
+    <script>
+
+        function generate_transaction(){
+            let account_name = document.getElementById('account_name').value;
+            let private_key = document.getElementById('private_key').value;
+            let proxy_name = document.getElementById('proxy_name').value;
+            let expireInSeconds = 60 * document.getElementById('minutes_before_expiration').value;
+            let block_num = +document.getElementById('block_num').value;
+            let chainId = document.getElementById('chainId').value;
+            let ref_block_num = block_num & 0xFFFF;
+            let ref_block_prefix = +document.getElementById('ref_block_prefix').value;
+
+            let options = {
+                broadcast: false,
+                sign: true,
+                authorization: account_name
+            };
+
+            let headers = {
+                ref_block_num: ref_block_num,
+                ref_block_prefix: ref_block_prefix,
+                expiration: new Date(new Date().getTime() + expireInSeconds * 1000).toISOString().split('.')[0],
+                net_usage_words: 0,
+                max_cpu_usage_ms: 0,
+                delay_sec: 0
+            };
+
+            let EOS = Eos({
+                keyProvider: private_key,
+                transactionHeaders: function(_, callback) {
+                    callback(null, headers)
+                },
+                broadcast: false,
+                sign: true,
+                chainId: chainId,
+                // checkChainId: false - enable after merge of https://github.com/EOSIO/eosjs/pull/179
+            });
+
+
+            EOS.transaction(
+                function(tr){
+                    tr.voteproducer({
+                        'voter': account_name,
+                        'proxy': proxy_name,
+                        'producers': []
+                    });
+                },
+                options
+            )
+            .then(function(result){
+                document.getElementById('raw_transaction').value = JSON.stringify(result['transaction'], null, "    ");
+                document.getElementById('transaction').style.display = "block";
+            });
+        }
+
+    </script>
+    <style>
+        li, input {
+            margin: 5px 0;
+        }
+        input[type=number]{
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Step 2: Generate your voting transaction while being OFF-LINE</h1>
+
+    <p>First of all, save this website to your local machine (right click, <var>Save as…</var>). This can be done in two ways:</p>
+    <ul>
+        <li>MAXIMUM SECURITY: Copy the file to a secure, off-line computer, which has never been connected to the internet - this gives you best protection. In this case, you should use a pen drive or an external hard drive to port the file to the off-line machine.</li>
+        <li>LESS SECURE, STILL BETTER THAN ON-LINE: If an off-line, air-gapped computer is not available, disconnect your machine from the internet (switch off wi-fi, network or whatever you're using). This is less secure, as it won't protect you from malware or key loggers that you may already have, but is still way more secure than doing this on-line.</li>
+    </ul>
+    <p>While being <b>OFF-LINE</b> do the following:</p>
+    <ol>
+        <li>Open the saved <var>2_generate_transaction.html</var> file in your browser. Your private key is at no point exposed to on-line connections, which greatly reduces the risk of getting hacked.</li>
+        <li>Fill in all fields. Triple check everything! For <var>chain_id</var>, <var>block_num</var> and <var>ref_block_prefix</var> use the data fetched in the previous step.</li>
+        <li>Copy or write down the generated transaction, as you'll need it in the subsequent step. Please note that your private key is used to sign transaction, but it's NOT part of the transaction.</li>
+    </ol>
+    <hr>
+    <form action="javascript:generate_transaction()">
+
+        <label for="account_name">Your Account Name</label>
+        <input type="text" name="account_name" id="account_name" value="" required><br/>
+
+        <label for="account_name">Proxy Account Name</label>
+        <input type="text" name="proxy_name" id="proxy_name" value="" required><br/>
+
+        <label for="private_key">Private Key</label>
+        <input type="text" name="private_key" id="private_key" value="" style="width: 700px;" required><br>
+
+        <label for="chainId"><var>chainId</var></label>
+        <input type="text" name="chainId" id="chainId" value="" required style="width: 500px"><br>
+
+        <label for="block_num"><var>block_num</var></label>
+        <input type="text" name="block_num" id="block_num" value="" required><br>
+
+        <label for="ref_block_prefix"><var>ref_block_prefix</var></label>
+        <input type="text" name="ref_block_prefix" id="ref_block_prefix" value="" required><br>
+
+        <label for="minutes_before_expiration">Transaction will expire in</label>
+        <input type="number" min="1" max="60" step="1" name="minutes_before_expiration" id="minutes_before_expiration" value="10" required> minutes<br>
+
+        <input type="submit" value="Generate transaction">
+    </form>
+
+    <div id="transaction" style="display: none">
+        <div>Generated and signed <var>raw transaction</var>:</div>
+        <textarea id="raw_transaction" style="width: 1000px; height: 400px; font-size: 0.7em;"></textarea>
+
+        <p>Copy or write down the above <var>raw transaction</var> (whitespaces don't matter).</p>
+        <p>Next, go to <a href="3_push_transaction.html" target="_blank">Step 3</a>, to push this transaction to the network.</p>
+    </div>
+
+</body>
+</html>
