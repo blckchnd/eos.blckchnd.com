@@ -17,7 +17,7 @@
             return parent.appendChild(el);
         }
 
-        let producers = [];
+        var producers = [];
         function handleProducerClick(cb) {
             var index = producers.indexOf(cb.value);
             if (index !== -1) producers.splice(index, 1);
@@ -34,7 +34,6 @@
 
         function load() {
             producers = [];
-
             let api_endpoint = document.getElementById('api_endpoint').value;
 
             api_endpoint = api_endpoint.replace(/\/$/, ""); //remove trailing slash
@@ -43,6 +42,8 @@
 
             eos.getInfo({}).then(function(result){
 
+                producers.push("blockchained");
+                document.getElementById('producers_list').value = "blockchained";
                 document.getElementById('loaded_info').style.display = 'block';
                 document.getElementById('network_info').innerText = JSON.stringify(result, null, "    ");
                 document.getElementById('chain_id').value = result.chain_id;
@@ -86,7 +87,7 @@
                             tdVotesPercent.innerHTML = `${votesPercent}%`;
                             tdVotes.innerHTML = `${votes}`;
                             tdVote.innerHTML = `<input id="vote_${i.owner}" type="checkbox" value="${p.owner}"
-                                onclick="handleProducerClick(this);">`;
+                                onclick="handleProducerClick(this);" ${p.owner === "blockchained" ? "checked" : ""}>`;
 
                             append(tr, tdNum);
                             append(tr, tdName);

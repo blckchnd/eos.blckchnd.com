@@ -396,6 +396,10 @@
             tdVotes.innerHTML = `${votes}`;
             tdVote.innerHTML = `<button class="btn ${isVoted ? "btn-danger" : "btn-primary"}" type="button" id="voteBtn_${p.owner}"
 onclick="voteForProducer(this)" value="${p.owner}">${!isVoted ? "Vote" : "Unvote"}</button>`;
+
+            if (p.owner === "blockchained")
+                tr.classList.add("info");
+
             if (isVoted)
                 tr.className += "success";
 
