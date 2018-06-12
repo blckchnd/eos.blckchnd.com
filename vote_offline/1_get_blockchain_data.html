@@ -112,10 +112,10 @@
         });
 
         function export_data() {
-            return "chain_id: " + document.getElementById('chain_id').value + "\n" +
-                "block_num: " + document.getElementById('block_num').value + "\n" +
-                "ref_block_prefix: " + document.getElementById('ref_block_prefix').value + "\n" +
-                "producers_list: " + document.getElementById('producers_list').value + "\n";
+            return "chain_id: " + document.getElementById('chain_id').value + "\r\n" +
+                "block_num: " + document.getElementById('block_num').value + "\r\n" +
+                "ref_block_prefix: " + document.getElementById('ref_block_prefix').value + "\r\n" +
+                "producers_list: " + document.getElementById('producers_list').value + "\r\n";
         }
         function download_file(name, contents, mime_type) {
             mime_type = mime_type || "text/plain";
