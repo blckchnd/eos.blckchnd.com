@@ -209,6 +209,7 @@
     const {ecc} = Eos.modules;
     var eos = null;
     const chainId = "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906";
+    const maxVotes = 30;
 
     var currentAccount = null;
     var privateKey = null;
@@ -322,8 +323,8 @@
         currentAccount.voter_info.proxy = "";
         document.getElementById('current_proxy').value = "";
 
-        if (currentAccount.voter_info.producers.length >= 21) {
-            alert("Cannot vote more than 21 producers. Please unvote somebody first.");
+        if (currentAccount.voter_info.producers.length >= maxVotes) {
+            alert(`Cannot vote more than ${maxVotes} producers. Please unvote somebody first.`);
             return;
         }
 

@@ -22,8 +22,8 @@
             var index = producers.indexOf(cb.value);
             if (index !== -1) producers.splice(index, 1);
             if (cb.checked) {
-                if (producers.length >= 21) {
-                    alert("Невозможно выбрать больше 21");
+                if (producers.length >= 30) {
+                    alert("Невозможно выбрать больше 30");
                     cb.checked = false;
                     return;
                 }
