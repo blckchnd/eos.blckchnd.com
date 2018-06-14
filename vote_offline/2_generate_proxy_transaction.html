@@ -1,0 +1,123 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="eos.js"></script>
+
+    <script>
+
+        function generate_transaction(){
+            let account_name = document.getElementById('account_name').value;
+            let private_key = document.getElementById('private_key').value;
+            let proxy = document.getElementById('proxy').value;
+            let expireInSeconds = 60 * document.getElementById('minutes_before_expiration').value;
+            let block_num = +document.getElementById('block_num').value;
+            let chainId = document.getElementById('chainId').value;
+            let ref_block_num = block_num & 0xFFFF;
+            let ref_block_prefix = +document.getElementById('ref_block_prefix').value;
+
+            let options = {
+                broadcast: false,
+                sign: true,
+                authorization: account_name
+            };
+
+            let headers = {
+                ref_block_num: ref_block_num,
+                ref_block_prefix: ref_block_prefix,
+                expiration: new Date(new Date().getTime() + expireInSeconds * 1000).toISOString().split('.')[0],
+                net_usage_words: 0,
+                max_cpu_usage_ms: 0,
+                delay_sec: 0
+            };
+
+            let EOS = Eos({
+                keyProvider: private_key,
+                transactionHeaders: function(_, callback) {
+                    callback(null, headers)
+                },
+                broadcast: false,
+                sign: true,
+                chainId: chainId,
+                // checkChainId: false - enable after merge of https://github.com/EOSIO/eosjs/pull/179
+            });
+
+
+            EOS.transaction(
+                function(tr){
+                    tr.voteproducer({
+                        'voter': account_name,
+                        'proxy': proxy,
+                        'producers': []
+                    });
+                },
+                options
+            )
+            .then(function(result){
+                document.getElementById('raw_transaction').value = JSON.stringify(result['transaction'], null, "    ");
+                document.getElementById('transaction').style.display = "block";
+            });
+        }
+
+    </script>
+    <style>
+        li, input {
+            margin: 5px 0;
+        }
+        input[type=number]{
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Этап 2: Создание ОФФЛАЙН транзациии</h1>
+
+    <p>Для начала, сохраните этот вебсайт на свой компьютер (правый клик, <var>Сохранить как…</var>). Это можно сделать двумя путями:</p>
+    <ul>
+        <li>МАКСИМАЛЬНАЯ БЕЗОПАСНОСТЬ: Скопируйте файл на безопасный оффлайн компьютер, который никогда не подключался к интернету - это дает наилучшую защиту. В таком случае вам понадобится использовать USB диск, или внешний диск для переноса файла на этот оффлайн компьютер.</li>
+        <li>МЕНЕЕ БЕЗОПАСНЫЙ СПОСОБ, НО ЛУЧШЕ ЧЕМ ОН ЛАЙН: Если у вас нет доступа к физически отключенному оффлайн компьютеру, то отключите свой компьютер от интернета (выключите свой wi-fi, сеть, или что вы используйте). Это менее безопасно, поскольку это не защитит вас от уже имеющихся на вашем компьютере малвари или кей логгеров, но это все же более безопасно чем делать это онлайн.</li>
+    </ul>
+    <p>Пока вы <b>ОФФЛАЙН</b> проделайте следующее:</p>
+    <ol>
+        <li>Откройте сохраненный файл <var>2_generate_transaction.html</var> в вашем браузере. Ваш приватный ключ в таком случае никогда не взаимодействует с онлайн соединениями, что сильно уменьшает риски подвергнуться хакерской аттаке (или быть взломанным, оставьте один вариант.</li>
+        <li>Заполните все поля. Трижды проверьте все! В качестве <var>chain_id</var>, <var>block_num</var> и <var>ref_block_prefix</var> используйте данные полученные на предыдущем шаге.</li>
+        <li>Скопируйте или запишите созданную транзакцию, поскольку она понадобится вам на следующем шаге. Помните, что ваш приватный ключ используется для подписи транзакции, но НЕ ЯВЛЯЕТСЯ её частью.</li>
+    </ol>
+    <hr>
+    <form action="javascript:generate_transaction()">
+
+        <label for="account_name">Имя Вашего Аккаунта</label>
+        <input type="text" name="account_name" id="account_name" value="" required><br/>
+
+
+        <label for="private_key">Приватный ключ</label>
+        <input type="text" name="private_key" id="private_key" value="" style="width: 700px;" autocomplete="off" required><br>
+
+        <label for="chainId"><var>chainId</var></label>
+        <input type="text" name="chainId" id="chainId" value="" required style="width: 500px"><br>
+
+        <label for="block_num"><var>block_num</var></label>
+        <input type="text" name="block_num" id="block_num" value="" autocomplete="off" required><br>
+
+        <label for="ref_block_prefix"><var>ref_block_prefix</var></label>
+        <input type="text" name="ref_block_prefix" id="ref_block_prefix" value="" autocomplete="off" required><br>
+
+        <label for="minutes_before_expiration">Транзакция протухнет через</label>
+        <input type="number" min="1" max="60" step="1" name="minutes_before_expiration" id="minutes_before_expiration" value="10" required> minutes<br>
+
+        <label for="proxy">Имя Прокси Аккаунта</label>
+        <input type="text" name="proxy" id="proxy" value="" style="width: 700px;" placeholder="proxy account" required><br>
+
+        <input type="submit" value="Создать транзакцию">
+    </form>
+
+    <div id="transaction" style="display: none">
+        <div>Созданная и подписанная <var>raw transaction</var>:</div>
+        <textarea id="raw_transaction" style="width: 1000px; height: 400px; font-size: 0.7em;"></textarea>
+
+        <p>Скопируйте или запишите приведенную выше <var>raw transaction</var> (пробелы не важны).</p>
+        <p>Далее, проследуйте на <a href="3_push_transaction.html" target="_blank">Шаг 3</a>, и отправьте эту транзакцию в сеть.</p>
+    </div>
+
+</body>
+</html>
