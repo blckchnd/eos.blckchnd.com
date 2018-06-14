@@ -442,6 +442,9 @@ header {
   @media screen and (max-width: 900px) {
     .timer {
       display: none; } }
+  .timer .container {
+    display: flex;
+    flex-direction: column; }
   .timer .text--lg {
     margin-bottom: 5rem; }
   .timer .btn {
@@ -533,7 +536,7 @@ header {
   height: 4rem;
   display: flex;
   align-items: center;
-  padding: 0 2rem;
+  padding: 1rem 2rem;
   font-size: 2rem; }
 
 .btn {
@@ -552,7 +555,7 @@ header {
     border: none; }
     .btn-danger:hover {
       background-color: #7f0e32;
-      box-shadow: inset 0 0 40px rgba(189, 219, 219, 0.4), 0 0 30px rgba(189, 219, 219, 0.4), 0 0 5px rgba(127, 14, 50, 0.74), 0 0 10px rgba(127, 14, 50, 0.74), 0 0 20px rgba(127, 14, 50, 0.74); }
+      box-shadow: inset 0 0 10px rgba(189, 219, 219, 0.4), 0 0 5px rgba(127, 14, 50, 0.74), 0 0 10px rgba(127, 14, 50, 0.74), 0 0 20px rgba(127, 14, 50, 0.74); }
     .btn-danger:disabled {
       background-color: #7f0e32 !important;
       opacity: 0.7; }
@@ -615,6 +618,24 @@ footer {
     text-decoration: none; }
     .social__link:hover:before {
       max-width: 300px; }
+
+#digital_watch {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: 9rem;
+  padding: 3rem;
+  margin: auto;
+  border-radius: 1rem;
+  border: 2px solid #7f0e32;
+  box-shadow: 0 0 3px rgba(127, 14, 50, 0.74), 0 0 5px rgba(127, 14, 50, 0.74), 0 0 10px rgba(127, 14, 50, 0.74); }
+  #digital_watch span {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 3rem; }
+    #digital_watch span small {
+      font-size: 1.8rem; }
 
 .hexagon {
   filter: drop-shadow(#7f0e32 0 0 5px) drop-shadow(#7f0e32 0 0 10px);
