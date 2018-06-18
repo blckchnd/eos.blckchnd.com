@@ -745,7 +745,10 @@ footer {
   position: relative;
   min-height: 100vh;
   display: flex;
-  align-items: center; }
+  align-items: center;
+  margin: auto; }
+  .vote .row {
+    align-items: stretch; }
   .vote .logo {
     position: absolute;
     top: 1rem;
@@ -753,12 +756,15 @@ footer {
   .vote .heading {
     margin-top: -10rem;
     margin-bottom: 5rem; }
+    @media screen and (max-width: 1000px) {
+      .vote .heading {
+        margin-top: 2rem; } }
   .vote__item {
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
+    flex: 1;
     margin: 0 2rem;
     padding: 3rem;
     background-color: #1b2324;
@@ -773,5 +779,29 @@ footer {
       box-shadow: 0 15px 15px rgba(127, 14, 50, 0.74); }
     .vote__item .mission__icon .material-icons {
       height: auto; }
+    @media screen and (max-width: 1000px) {
+      .vote__item {
+        width: 100%;
+        flex: auto;
+        margin-bottom: 3rem;
+        flex-direction: row; }
+        .vote__item .vote__desc {
+          flex: 1;
+          text-align: left;
+          margin-left: 3rem; }
+        .vote__item .mission__icon, .vote__item .mission__text {
+          margin-bottom: 0; } }
+    @media screen and (max-width: 600px) {
+      .vote__item {
+        width: 100%;
+        flex: auto;
+        margin-bottom: 3rem;
+        flex-direction: column; }
+        .vote__item .vote__desc {
+          flex: auto;
+          text-align: center;
+          margin-left: 0; }
+        .vote__item .mission__icon {
+          margin-bottom: 3rem; } }
 
 /*# sourceMappingURL=styles.css.map */

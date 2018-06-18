@@ -3,6 +3,10 @@
   min-height: 100vh;
   display: flex;
   align-items: center;
+  margin: auto;
+  .row{
+    align-items: stretch;
+  }
   .logo{
     position: absolute;
     top: 1rem;
@@ -11,13 +15,16 @@
   .heading{
     margin-top: -10rem;
     margin-bottom: 5rem;
+    @media screen and (max-width: 1000px){
+      margin-top: 2rem;
+    }
   }
   &__item{
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 100%;
+    flex: 1;
     margin: 0 2rem;
     padding: 3rem;
     background-color: $dark;
@@ -34,6 +41,34 @@
     .mission__icon{
       .material-icons{
         height: auto;
+      }
+    }
+    @media screen and (max-width: 1000px){
+      width: 100%;
+      flex: auto;
+      margin-bottom: 3rem;
+      flex-direction: row;
+      .vote__desc{
+        flex: 1;
+        text-align: left;
+        margin-left: 3rem;
+      }
+      .mission__icon, .mission__text{
+        margin-bottom: 0;
+      }
+    }
+    @media screen and (max-width: 600px){
+      width: 100%;
+      flex: auto;
+      margin-bottom: 3rem;
+      flex-direction: column;
+      .vote__desc{
+        flex: auto;
+        text-align: center;
+        margin-left: 0;
+      }
+      .mission__icon{
+        margin-bottom: 3rem;
       }
     }
   }
