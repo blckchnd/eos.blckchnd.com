@@ -498,6 +498,25 @@ footer {
   background-image: linear-gradient($secondary, rgba(16, 21, 23, 0.6), $secondary),
   url("../img/ground.jpg");
   background-size: cover;
+  box-shadow: -3px -3px 5px $accent_opacity;
+  &:after {
+    position: absolute;
+    top: -2px;
+    content: '';
+    display: block;
+    height: 2px;
+    background-image: radial-gradient($accent_opacity, rgba(0, 0, 0, 0));
+    border-radius: 50%;
+    left: 3rem;
+    width: 6rem;
+    animation: headerTwinkle 20s linear infinite;
+    box-shadow: 0 0 3px $accent_opacity,
+    0 0 5px $accent_opacity,
+    0 0 7px $accent_opacity,
+    0 0 13px $accent_opacity;
+  }
+
+
   .logo {
     display: block;
     margin-bottom: 3rem;
@@ -587,9 +606,7 @@ footer {
       background-color: $dark;
       border: none;
       border-radius: 0.6em;
-      box-shadow: 0 5px 10px $accent_opacity,
-      5px 0 10px $accent_opacity,
-      5px 5px 20px $accent_opacity;
+      box-shadow: 0 5px 10px $accent_opacity;
       .close {
         position: absolute;
         top: 0.5rem;
@@ -688,3 +705,5 @@ footer {
 }
 
 /*!map*/
+
+@import 'vote';

@@ -1,456 +1,97 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-    <meta content="eos bp voting tools" name="description"/>
-    <meta content="BLCKCHND" name="author"/>
-
-    <!-- Bootstrap CSS -->
-    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"-->
-    <!--integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">-->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-
-    <!--<script src="https://github.com/EOSIO/eosjs/releases/download/v14.1.1/eos.js" integrity="sha256-FSTgn2i5iS3geonhD7AZb58QJuQ4YiWXBnM8BbEmejg="></script>-->
-    <script src="eos.js"></script>
-
-    <style type="text/css">
-
-        .monospace {
-            font-family: monospace;
-        }
-
-        html {
-            min-height: 100%;
-        }
-
-        body {
-            margin: 0;
-            padding-bottom: 5rem;
-            display: flex;
-            align-items: center;
-            color: #e6f2ee;
-            font-size: 1.4rem;
-            font-family: Avenir, PT Sans, monospace;
-            background-image: linear-gradient(165deg, #101517 55%, #350816);
-        }
-
-        .container {
-            margin: auto;
-            display: flex;
-            -webkit-flex-direction: column;
-            -moz-flex-direction: column;
-            -ms-flex-direction: column;
-            -o-flex-direction: column;
-            flex-direction: column;
-        }
-
-        .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-width: 160px;
-            width: auto;
-            transition: 0.3s all;
-            background-color: #7f0e32;
-            border: none;
-            color: #e6f2ee;
-        }
-        .btn:hover {
-            cursor: pointer;
-            background-color: #7f0e32;
-            box-shadow: inset 0 0 15px rgba(189, 219, 219, 0.4), 0 0 5px rgba(127, 14, 50, 0.74), 0 0 10px rgba(127, 14, 50, 0.74);
-        }
-
-        label{
-            text-align: right;
-            margin-right: 2rem;
-            font-weight: bold;
-            font-size: 2rem;
-        }
-
-        input {
-            flex: 1;
-            border-radius: 0.4rem;
-        }
-
-        input[type=number] {
-            text-align: right;
-        }
-
-        form div{
-            display: -webkit-flex;
-            display: -moz-flex;
-            display: -ms-flex;
-            display: -o-flex;
-            display: flex;
-            -ms-align-items: center;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-        form div span{
-            margin-left: 3rem;
-        }
-    </style>
-    <title>EOS Tools!</title>
+    <title>EOS</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Play&amp;subset=cyrillic" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+          integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="../styles/styles.css">
 </head>
-<body onLoad="load()">
 
-<div class="container">
+<body>
 
-    <h1 class="text-center">EOS BP Voting</h1>
-    <!-- Fork me on GitHub -->
-    <a href="https://github.com/blckchnd/eostools"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_white_ffffff.png" alt="Fork me on GitHub"></a>
-
-
-    <div id="status" class="monospace"></div>
-
-    <hr>
-
-    <div id="account_input_block" class="row">
-
-        <h2>Account</h2>
-        <div class="col-md-12">
-
-            <form class="form-horizontal" role="form" action="javascript:unlock()" autocomplete="off">
-
-                <div class="form-group">
-                    <label for="account_name" class="col-sm-2 control-label">Account</label>
-
-                    <div class="col-sm-10">
-                        <input class="form-control" type="text" name="account_name" id="account_name"
-                               placeholder="john"
-                               required>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="private_key" class="col-sm-2 control-label">Private Key</label>
-
-                    <div class="col-sm-10">
-                        <input class="form-control" type="password" name="private_key" id="private_key"
-                               placeholder="5xxx...xxx"
-                               autocomplete="off" required>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn btn-primary">Unlock</button>
-            </form>
+<section id="vote" class="section vote">
+    <a href="/#about"><img src="../img/blckchnd-logo-white.svg" alt="" class="logo"></a>
+    <div class="container">
+        <h2 class="heading ">Vote for us</h2>
+        <div class="row justify-content-around">
+            <div class="col-md-4">
+                <a href="offline/stage1.html" class="text-center text--md vote__item">
+                    <div class="mission__icon">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="104" height="120"
+                             viewbox="0 0 103.92304845413263 120" class="hexagon">
+                            <path class="hexagon__path"
+                                  d="M46.76537180435968 2.9999999999999996Q51.96152422706631 0 57.157676649772945 3L98.726896031426 27Q103.92304845413263 30 103.92304845413263 36L103.92304845413263 84Q103.92304845413263 90 98.726896031426 93L57.157676649772945 117Q51.96152422706631 120 46.76537180435968 117L5.196152422706632 93Q0 90 0 84L0 36Q0 30 5.196152422706632 27Z"></path>
+                        </svg>
+                        <img src="../img/secure-shield.svg" alt="" class="material-icons"></div>
+                    <h5 class="mission__title text--lg">Offline</h5>
+                    <p class="mission__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, distinctio.</p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="online/index.html" class="text-center text--md vote__item">
+                    <div class="mission__icon">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="104" height="120"
+                             viewbox="0 0 103.92304845413263 120" class="hexagon">
+                            <path class="hexagon__path"
+                                  d="M46.76537180435968 2.9999999999999996Q51.96152422706631 0 57.157676649772945 3L98.726896031426 27Q103.92304845413263 30 103.92304845413263 36L103.92304845413263 84Q103.92304845413263 90 98.726896031426 93L57.157676649772945 117Q51.96152422706631 120 46.76537180435968 117L5.196152422706632 93Q0 90 0 84L0 36Q0 30 5.196152422706632 27Z"></path>
+                        </svg>
+                        <img src="../img/speed.svg" alt="" class="material-icons"></div>
+                    <h5 class="mission__title text--lg">Online</h5>
+                    <p class="mission__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consectetur, distinctio.</p>
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a href="#" class="text-center text--md vote__item">
+                    <div class="mission__icon">
+                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="104" height="120"
+                             viewbox="0 0 103.92304845413263 120" class="hexagon">
+                            <path class="hexagon__path"
+                                  d="M46.76537180435968 2.9999999999999996Q51.96152422706631 0 57.157676649772945 3L98.726896031426 27Q103.92304845413263 30 103.92304845413263 36L103.92304845413263 84Q103.92304845413263 90 98.726896031426 93L57.157676649772945 117Q51.96152422706631 120 46.76537180435968 117L5.196152422706632 93Q0 90 0 84L0 36Q0 30 5.196152422706632 27Z"></path>
+                        </svg>
+                        <img src="../img/scatter-wt.png" alt="" class="material-icons"></div>
+                    <h5 class="mission__title text--lg">Scatter</h5>
+                    <p class="mission__text">Coming soon</p>
+                </a>
+            </div>
 
         </div>
     </div>
+</section>
 
-    <div id="current_account_block" class="row" style="display: none;">
-        <h2>Account (unlocked)</h2>
-        <div class="col-md-12">
-            <form class="form-horizontal" role="form">
-
-                <div class="form-group">
-                    <label for="current_account" class="col-sm-2 control-label">Account</label>
-
-                    <div class="col-sm-10">
-                        <input class="form-control" type="text" name="current_account" id="current_account" value=""
-                               readonly><br>
-                    </div>
-                </div>
-            </form>
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6"><a href="/#about"><img src="../img/blckchnd-logo-white.svg" alt="" class="logo"/></a></div>
+            <div class="col-md-12">
+                <ul class="social__list text--md">
+                    <li class="social__item"><a href="https://steemit.com/@blockchained" target="_blank" class="social__link">steemit</a></li>
+                    <li class="social__item"><a href="http://golos.io/@blockchained" target="_blank" class="social__link">golos</a></li>
+                    <li class="social__item"><a href="https://medium.com/@eos.blckchnd" target="_blank" class="social__link">medium</a></li>
+                    <li class="social__item"><a href="https://twitter.com/BLCKCHND" target="_blank" class="social__link">twitter</a></li>
+                    <li class="social__item"><a href="https://t.me/blckchnd_EOS" target="_blank" class="social__link">telegram</a></li>
+                    <li class="social__item"><a href="https://github.com/blckchnd" target="_blank" class="social__link">blkchnd github</a></li>
+                    <li class="social__item"><a href="https://github.com/graphenelab" target="_blank" class="social__link">graphene lab github</a></li>
+                </ul>
+            </div>
         </div>
-
-        <hr>
-        <h2>Voting</h2>
-
-        <h3>Proxy</h3>
-        <hr>
-        <div class="col-md-12">
-            <form class="form-horizontal" role="form">
-
-                <div class="form-group">
-                    <label for="current_proxy" class="col-sm-2 control-label">Proxy</label>
-
-                        <div class="input-group">
-                            <input type="text" class="form-control" name="current_proxy" id="current_proxy">
-                            <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" onclick="setProxy()">Set Proxy</button>
-                            </span>
-                        </div>
-                </div>
-            </form>
-        </div>
-
-
-        <h3>Producers</h3>
-        <hr>
-        <div class="col-md-12">
-            <table class="table table-bordered table-striped">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Name</th>
-                    <th>URL</th>
-                    <th>Votes %</th>
-                    <th>Votes</th>
-                    <th>Vote</th>
-                </tr>
-                </thead>
-                <tbody id=producers>
-                </tbody>
-            </table>
-        </div>
-
-
     </div>
+</footer>
+<div class="copyright">© 2018 EOS.BLCKCHND All Rights Reserved</div>
 
-    <hr>
-
-</div>
-
-<script>
-    const {ecc} = Eos.modules;
-    var eos = null;
-    const chainId = "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906";
-    const maxVotes = 30;
-
-    var currentAccount = null;
-    var privateKey = null;
-
-    function handleError(error) {
-        document.getElementById('status').innerText = error.message;
-    }
-
-    function clearError() {
-        document.getElementById('status').innerText = "";
-    }
-
-    function processInfo(result) {
-
-        if (result.chain_id !== chainId) {
-            handleError({message: "Invalid chain"});
-        }
-
-        document.getElementById('loaded_info').style.display = 'block';
-        document.getElementById('network_info').innerText = JSON.stringify(result, null, "    ");
-        document.getElementById('chain_id').value = result.chain_id;
-    }
-
-    function load() {
-        eos = Eos({
-            chainId: "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906",
-            httpEndpoint: "https://api-eos.blckchnd.com",
-            broadcast: true
-        });
-
-        eos.getInfo({}).then(processInfo, handleError);
-    }
-
-    function createNode(element) {
-        return document.createElement(element);
-    }
-
-    function append(parent, el) {
-        return parent.appendChild(el);
-    }
-
-    function generateTransaction() {
-        eos.getInfo({}).then(info => {
-            eos.getBlock(info.last_irreversible_block_num).then(block => {
-                generateTransaction2(block.block_num, block.ref_block_prefix);
-            }, handleError);
-        }, handleError);
-    }
-
-    function generateTransaction2(blockNum, blockPrefix){
-        let account_name = currentAccount.account_name;
-        let block_producers = currentAccount.voter_info.producers;
-        let proxy_name = currentAccount.voter_info.proxy;
-        let expireInSeconds = 600;
-        let block_num = +blockNum;
-        let ref_block_num = block_num & 0xFFFF;
-        let ref_block_prefix = +blockPrefix;
-
-        console.log("X:", blockNum, blockPrefix);
-
-        let options = {
-            broadcast: false,
-            sign: true,
-            authorization: account_name
-        };
-
-        let headers = {
-            ref_block_num: ref_block_num,
-            ref_block_prefix: ref_block_prefix,
-            expiration: new Date(new Date().getTime() + expireInSeconds * 1000).toISOString().split('.')[0],
-            net_usage_words: 0,
-            max_cpu_usage_ms: 0,
-            delay_sec: 0
-        };
-
-        let _eos = Eos({
-            keyProvider: privateKey.toString(),
-            transactionHeaders: function(_, callback) {
-                callback(null, headers)
-            },
-            broadcast: false,
-            sign: true,
-            chainId: chainId,
-            // checkChainId: false
-        });
-
-
-        _eos.transaction(
-            function(tr){
-                tr.voteproducer({
-                    'voter': account_name,
-                    'proxy': proxy_name,
-                    'producers': block_producers
-                });
-            },
-            options
-        )
-            .then(function(result){
-
-                // Push
-                eos.pushTransaction(result['transaction']).then(
-                    result => {
-                        console.log("Success");
-                    },
-                    handleError
-                );
-            });
-    }
-
-    function voteForProducer(btn) {
-        currentAccount.voter_info.proxy = "";
-        document.getElementById('current_proxy').value = "";
-
-        if (currentAccount.voter_info.producers.length >= maxVotes) {
-            alert(`Cannot vote more than ${maxVotes} producers. Please unvote somebody first.`);
-            return;
-        }
-
-        let name = btn.value;
-        let index = currentAccount.voter_info.producers.indexOf(name);
-        if (index !== -1) {
-            currentAccount.voter_info.producers.splice(index, 1);
-            document.getElementById(`producerRow_${name}`).classList.remove("success");
-            document.getElementById(`voteBtn_${name}`).classList.remove("btn-danger");
-            document.getElementById(`voteBtn_${name}`).innerHTML = "Vote";
-        } else {
-            currentAccount.voter_info.producers.push(name);
-            document.getElementById(`producerRow_${name}`).classList.add("success");
-            document.getElementById(`voteBtn_${name}`).classList.add("btn-danger");
-            document.getElementById(`voteBtn_${name}`).innerHTML = "Unvote";
-        }
-
-        generateTransaction();
-    }
-
-    function setProxy() {
-        let proxyName = document.getElementById('current_proxy').value;
-        if (!proxyName) return;
-
-        currentAccount.voter_info.proxy = proxyName;
-
-        currentAccount.voter_info.producers.forEach(name => {
-            document.getElementById(`producerRow_${name}`).classList.remove("success");
-            document.getElementById(`voteBtn_${name}`).classList.remove("btn-danger");
-            document.getElementById(`voteBtn_${name}`).innerHTML = "Vote";
-        });
-        currentAccount.voter_info.producers = [];
-
-        generateTransaction();
-    }
-
-    function processProducers(result) {
-        const table = document.getElementById('producers');
-
-        while (table.firstChild) {
-            table.removeChild(table.firstChild);
-        }
-
-        let totalVotes = Number(result.total_producer_vote_weight);
-
-        let i = 0;
-        result.rows.map(function (p) {
-            if (!p.is_active) return;
-
-            i++;
-            let tr = createNode('tr'),
-                tdNum = createNode('td'),
-                tdName = createNode('td'),
-                tdUrl = createNode('td'),
-                tdVotesPercent = createNode('td'),
-                tdVotes = createNode('td'),
-                tdVote = createNode('td');
-
-            let votes = Math.floor(Number(p.total_votes) / 1000000000);
-            let votesPercent = (100.0 / totalVotes * p.total_votes).toFixed(4);
-
-            let isVoted = currentAccount.voter_info.producers.indexOf(p.owner) >= 0;
-
-            tr.id = `producerRow_${p.owner}`;
-
-            tdNum.innerHTML = `${i}`;
-            tdName.innerHTML = `${p.owner}`;
-            tdUrl.innerHTML = `<a href="${p.url}">${p.url}</a>`;
-            tdVotesPercent.innerHTML = `${votesPercent}%`;
-            tdVotes.innerHTML = `${votes}`;
-            tdVote.innerHTML = `<button class="btn ${isVoted ? "btn-danger" : "btn-primary"}" type="button" id="voteBtn_${p.owner}"
-onclick="voteForProducer(this)" value="${p.owner}">${!isVoted ? "Vote" : "Unvote"}</button>`;
-
-            if (p.owner === "blockchained")
-                tr.classList.add("info");
-
-            if (isVoted)
-                tr.className += "success";
-
-            append(tr, tdNum);
-            append(tr, tdName);
-            append(tr, tdUrl);
-            append(tr, tdVotesPercent);
-            append(tr, tdVotes);
-            append(tr, tdVote);
-            append(table, tr);
-        });
-
-    }
-
-    function processAccount(result) {
-        currentAccount = result;
-        console.log(JSON.stringify(currentAccount));
-        let publicKey = privateKey.toPublic().toString();
-
-        let activePerm = result.permissions.find(p => p.perm_name === "active");
-        let activeKey = activePerm.required_auth.keys.find(k => k.key === publicKey);
-        if (activeKey) {
-            document.getElementById('current_account_block').style.display = 'block';
-            document.getElementById('account_input_block').style.display = 'none';
-            document.getElementById('current_account').value = currentAccount.account_name;
-            document.getElementById('current_proxy').value = currentAccount.voter_info.proxy;
-
-            eos.getProducers({
-                json: true, code: "eosio", scope: "eosio",
-                table: "producers", table_key: "", limit: 500
-            }).then(processProducers, handleError);
-        } else {
-            handleError({message: "Incorrect private key"});
-        }
-    }
-
-    function unlock() {
-        clearError();
-
-        let accountName = document.getElementById('account_name').value;
-
-        try {
-            privateKey = ecc.PrivateKey.fromString(document.getElementById('private_key').value);
-        } catch (e) {
-            handleError({message: e.toString()});
-        }
-
-        eos.getAccount({account_name: accountName}).then(processAccount, handleError);
-    }
-</script>
-
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>

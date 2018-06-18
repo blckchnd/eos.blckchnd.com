@@ -580,7 +580,20 @@ header {
 footer {
   padding: 4rem 3rem;
   background-image: linear-gradient(#101517, rgba(16, 21, 23, 0.6), #101517), url("../img/ground.jpg");
-  background-size: cover; }
+  background-size: cover;
+  box-shadow: -3px -3px 5px rgba(127, 14, 50, 0.74); }
+  footer:after {
+    position: absolute;
+    top: -2px;
+    content: '';
+    display: block;
+    height: 2px;
+    background-image: radial-gradient(rgba(127, 14, 50, 0.74), rgba(0, 0, 0, 0));
+    border-radius: 50%;
+    left: 3rem;
+    width: 6rem;
+    animation: headerTwinkle 20s linear infinite;
+    box-shadow: 0 0 3px rgba(127, 14, 50, 0.74), 0 0 5px rgba(127, 14, 50, 0.74), 0 0 7px rgba(127, 14, 50, 0.74), 0 0 13px rgba(127, 14, 50, 0.74); }
   footer .logo {
     display: block;
     margin-bottom: 3rem; }
@@ -651,7 +664,7 @@ footer {
   background-color: #1b2324;
   border: none;
   border-radius: 0.6em;
-  box-shadow: 0 5px 10px rgba(127, 14, 50, 0.74), 5px 0 10px rgba(127, 14, 50, 0.74), 5px 5px 20px rgba(127, 14, 50, 0.74); }
+  box-shadow: 0 5px 10px rgba(127, 14, 50, 0.74); }
   .eos__modal .modal-content .close {
     position: absolute;
     top: 0.5rem;
@@ -728,5 +741,37 @@ footer {
   display: none; }
 
 /*!map*/
+.vote {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center; }
+  .vote .logo {
+    position: absolute;
+    top: 1rem;
+    left: 1rem; }
+  .vote .heading {
+    margin-top: -10rem;
+    margin-bottom: 5rem; }
+  .vote__item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    margin: 0 2rem;
+    padding: 3rem;
+    background-color: #1b2324;
+    border-radius: 0.6em;
+    color: #e6f2ee;
+    box-shadow: 0 5px 10px rgba(127, 14, 50, 0.74);
+    transition: 0.3s all; }
+    .vote__item:hover {
+      color: #e6f2ee;
+      text-decoration: none;
+      transform: translateY(-1%);
+      box-shadow: 0 15px 15px rgba(127, 14, 50, 0.74); }
+    .vote__item .mission__icon .material-icons {
+      height: auto; }
 
 /*# sourceMappingURL=styles.css.map */
