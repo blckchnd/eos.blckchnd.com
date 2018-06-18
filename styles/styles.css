@@ -439,9 +439,6 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center; }
-  @media screen and (max-width: 900px) {
-    .timer {
-      display: none; } }
   .timer .container {
     display: flex;
     flex-direction: column; }
@@ -449,6 +446,33 @@ header {
     margin-bottom: 5rem; }
   .timer .btn {
     margin-top: 5rem; }
+
+#digital_watch {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: 9rem;
+  padding: 3rem;
+  margin: auto;
+  border-radius: 1rem;
+  border: 2px solid #7f0e32;
+  box-shadow: 0 0 3px rgba(127, 14, 50, 0.74), 0 0 5px rgba(127, 14, 50, 0.74), 0 0 10px rgba(127, 14, 50, 0.74); }
+  @media screen and (max-width: 900px) {
+    #digital_watch {
+      font-size: 4rem; } }
+  @media screen and (max-width: 600px) {
+    #digital_watch {
+      padding: 1.5rem; } }
+  #digital_watch span {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 3rem; }
+    @media screen and (max-width: 600px) {
+      #digital_watch span {
+        padding: 0 1.5rem; } }
+    #digital_watch span small {
+      font-size: 1.8rem; }
 
 .products {
   background-image: linear-gradient(#101517, rgba(16, 21, 23, 0.8), #101517), url("../img/ground.jpg");
@@ -631,24 +655,6 @@ footer {
     text-decoration: none; }
     .social__link:hover:before {
       max-width: 300px; }
-
-#digital_watch {
-  display: inline-flex;
-  align-items: flex-start;
-  justify-content: center;
-  font-size: 9rem;
-  padding: 3rem;
-  margin: auto;
-  border-radius: 1rem;
-  border: 2px solid #7f0e32;
-  box-shadow: 0 0 3px rgba(127, 14, 50, 0.74), 0 0 5px rgba(127, 14, 50, 0.74), 0 0 10px rgba(127, 14, 50, 0.74); }
-  #digital_watch span {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 0 3rem; }
-    #digital_watch span small {
-      font-size: 1.8rem; }
 
 .hexagon {
   filter: drop-shadow(#7f0e32 0 0 5px) drop-shadow(#7f0e32 0 0 10px);

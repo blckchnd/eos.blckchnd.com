@@ -312,9 +312,6 @@ header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  @media screen and (max-width: 900px) {
-    display: none;
-  }
   .container{
     display: flex;
     flex-direction: column;
@@ -324,6 +321,36 @@ header {
   }
   .btn {
     margin-top: 5rem;
+  }
+}
+
+#digital_watch {
+  display: inline-flex;
+  align-items: flex-start;
+  justify-content: center;
+  font-size: 9rem;
+  padding: 3rem;
+  margin: auto;
+  border-radius: 1rem;
+  border: 2px solid $accent;
+  box-shadow: 0 0 3px $accent_opacity, 0 0 5px $accent_opacity, 0 0 10px $accent_opacity;
+  @media screen and (max-width: 900px) {
+    font-size: 4rem;
+  }
+  @media screen and (max-width: 600px) {
+    padding: 1.5rem;
+  }
+  span {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 3rem;
+    @media screen and (max-width: 600px) {
+      padding: 0 1.5rem;
+    }
+    small{
+      font-size: 1.8rem;
+    }
   }
 }
 
@@ -563,27 +590,6 @@ footer {
       &:before {
         max-width: 300px;
       }
-    }
-  }
-}
-
-#digital_watch {
-  display: inline-flex;
-  align-items: flex-start;
-  justify-content: center;
-  font-size: 9rem;
-  padding: 3rem;
-  margin: auto;
-  border-radius: 1rem;
-  border: 2px solid $accent;
-  box-shadow: 0 0 3px $accent_opacity, 0 0 5px $accent_opacity, 0 0 10px $accent_opacity;
-  span {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding: 0 3rem;
-    small{
-      font-size: 1.8rem;
     }
   }
 }
