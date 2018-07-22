@@ -249,7 +249,7 @@
 
                             <label for="net_amount" class="col-sm-2 control-label">Bandwidth</label>
                             <div class="col-sm-10">
-                                <input type="number" value="0.1" step="0.1" data-number-to-fixed="4"
+                                <input type="number" value="0.1" step="0.0001" data-number-to-fixed="4"
                                        data-number-stepfactor="10000" class="form-control currency" name="net_amount"
                                        id="net_amount" required/>
                             </div>
@@ -260,7 +260,7 @@
 
                             <label for="cpu_amount" class="col-sm-2 control-label">CPU</label>
                             <div class="col-sm-10">
-                                <input type="number" value="0.1" step="0.1" data-number-to-fixed="4"
+                                <input type="number" value="0.1" step="0.0001" data-number-to-fixed="4"
                                        data-number-stepfactor="10000" class="form-control currency" name="cpu_amount"
                                        id="cpu_amount" required/>
                             </div>
@@ -271,7 +271,7 @@
 
                             <label for="ram_amount" class="col-sm-2 control-label">Memory</label>
                             <div class="col-sm-10">
-                                <input type="number" value="2.5" step="0.1" data-number-to-fixed="4"
+                                <input type="number" value="2.5" step="0.0001" data-number-to-fixed="4"
                                        data-number-stepfactor="10000" class="form-control currency" name="ram_amount"
                                        id="ram_amount" required/>
                             </div>
@@ -298,9 +298,9 @@
     const chainId = "aca376f206b8fc25a6ed44dbdc66547c36c6c33e3a119ffbeaef943642f0e906";
     const tokenName = "EOS";
     const address = "https://api-eos.blckchnd.com";
-//    const chainId = "f9d27284ebb303391748c6918c4f50676f5e940caee6b5fd433651757b49aa38";
-//    const tokenName = "SYS";
-//    const address = "http://159.65.192.117:8888";
+    //    const chainId = "f9d27284ebb303391748c6918c4f50676f5e940caee6b5fd433651757b49aa38";
+    //    const tokenName = "SYS";
+    //    const address = "http://159.65.192.117:8888";
     const maxVotes = 30;
 
     var currentAccount = null;
