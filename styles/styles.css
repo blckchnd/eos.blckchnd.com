@@ -545,7 +545,10 @@ header {
         flex-direction: column;
         align-items: flex-start; } }
   .partners__avatar {
-    max-width: 400px; }
+    max-width: 400px;
+    max-height: 130px;
+    padding-bottom: 30px;
+  }
     @media screen and (max-width: 900px) {
       .partners__avatar {
         margin-bottom: 2rem;
