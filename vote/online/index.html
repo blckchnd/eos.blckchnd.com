@@ -341,6 +341,7 @@
             document.getElementById(`voteBtn_${name}`).classList.add("btn-danger");
             document.getElementById(`voteBtn_${name}`).innerHTML = "Unvote";
         }
+        currentAccount.voter_info.producers.sort();
 
         generateTransaction();
     }
