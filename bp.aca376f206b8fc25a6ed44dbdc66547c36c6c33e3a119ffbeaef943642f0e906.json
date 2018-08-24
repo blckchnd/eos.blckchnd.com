@@ -14,8 +14,8 @@
     "location": {
       "name": "St. Petersburg",
       "country": "RU",
-      "latitude": 0,
-      "longitude": 0
+      "latitude": 59.9343,
+      "longitude": 30.3351
     },
     "social": {
       "steemit": "blockchained",
@@ -24,7 +24,7 @@
       "facebook": "",
       "github":"blckchnd",
       "reddit": "",
-      "keybase": "",
+      "keybase": "team/eos_blockchained",
       "telegram": "blckchnd_EOS",
       "wechat":""
     }
@@ -32,14 +32,14 @@
   "nodes": [
     {
       "location": {
-        "name": "EOS BLOCKCHND",
-        "country": "Germany",
+        "name": "EOS BLCKCHND",
+        "country": "DE",
         "latitude": 51.2993,
         "longitude": 9.491
       },
-      "is_producer": true,
-      "p2p_endpoint": "p2p.eos.blckchnd.com:9876",
-      "api_endpoint": "https://api-eos.blckchnd.com",
+      "node_type": "full",
+      "p2p_endpoint": "p2p.eos.blckchnd.com:19876",
+      "api_endpoint": "http://api-eos.blckchnd.com",
       "ssl_endpoint": "https://api-eos.blckchnd.com"
     }
   ]
